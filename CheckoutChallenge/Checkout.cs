@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CheckoutChallenge
 {
-    class Checkout
+    public class Checkout
     {
         Dictionary<char, int> checkoutContents = new Dictionary<char, int>();
 
@@ -23,22 +23,21 @@ namespace CheckoutChallenge
                     checkoutContents.Add(itemToAdd.Name, 1);
                 }
             }
-
         }
+
         public double GetPrice(string name, int noOfItems)
         {
             double price = 0;
             Item anItem = Stock.AvailableItems.Find(item => item.Name.ToString() == name);
             if (anItem.SpecialPrice != null)
             {
-                if (noOfItems >= anItem.SpecialPrice.NoOfItems)
-                {
-                    price = noOfItems / anItem.SpecialPrice.NoOfItems * anItem.SpecialPrice.GroupPrice;
-                    noOfItems = noOfItems - noOfItems / anItem.SpecialPrice.NoOfItems;
-                }
+                    int noOfSpecialPrices = Math.DivRem(noOfItems, anItem.SpecialPrice.NoOfItems, out int result);
+                    price = noOfSpecialPrices * anItem.SpecialPrice.GroupPrice;
+                    price += result * anItem.Price;
+                    return price;
             }
 
-            price += (noOfItems * anItem.Price);
+            price = (noOfItems * anItem.Price);
             return price;
         }
 
