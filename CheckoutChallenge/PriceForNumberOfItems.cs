@@ -1,6 +1,6 @@
 ﻿namespace CheckoutChallenge
 {
-    struct PriceForNumberOfItems
+    public struct PriceForNumberOfItems
     {
         public int NoOfItems { get; set; }
 
