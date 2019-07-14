@@ -21,10 +21,7 @@
             SpecialPrice = new PriceForNumberOfItems(specialPrice.NoOfItems, specialPrice.GroupPrice);;
         }
 
-        public double GetPrice(Item item, int noOfItems)
-        {
-            return Price;
-        }
+        
 
     }
 }

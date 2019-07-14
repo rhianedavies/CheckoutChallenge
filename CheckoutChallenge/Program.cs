@@ -17,8 +17,7 @@ namespace CheckoutChallenge
                 B				30p			2 for £0.45
                 C 				70p			
                 D				20p*/
-            Stock stock = new Stock();
-            stock.AvailableItems = new List<Item>
+            Stock.AvailableItems = new List<Item>
             {
                 new Item('A', 0.5, new PriceForNumberOfItems(3, 1.3)),
                 new Item('B', 0.3, new PriceForNumberOfItems(2, 0.45)),
@@ -35,34 +34,16 @@ namespace CheckoutChallenge
             {
                 cki = Console.ReadKey();
 
-                checkout.AddItemToCheckout(stock.AvailableItems.Find(item => item.Name.ToString() == cki.Key.ToString()));
+                checkout.AddItemToCheckout(Stock.AvailableItems.Find(item => item.Name.ToString() == cki.Key.ToString()));
 
-                //foreach (var availableItem in availableItems)
-                //{
-                //    if (cki.Key.ToString() == availableItem.Name.ToString())
-                //    {
-                //        itemsInBasket.Add(cki.KeyChar);
-                //    }
-                //}
-                //Console.Write(" --- You pressed ");
-                //Console.WriteLine(cki.Key.ToString());
-                //string strBasket = "";
-                //foreach (var itemInBasket in itemsInBasket)
-                //{
-                //    strBasket += itemInBasket.ToString().ToUpper() + " ";
-                //}
-                //Console.WriteLine($"In Basket: {strBasket}");
             } while (cki.Key != ConsoleKey.Enter);
 
             var totalPrice = checkout.GetTotal();
 
             Console.WriteLine($"Total = {totalPrice}");
+
+            Console.Read();
         }
 
-        //private bool CompareKeyCharAndChar(ConsoleKeyInfo keyChar, char nameChar)
-        //{
-        //    keyChar.Modifiers
-        //    return false;
-        //}
     }
 }

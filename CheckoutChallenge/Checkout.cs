@@ -8,25 +8,51 @@ namespace CheckoutChallenge
 {
     class Checkout
     {
-        public List<Item> ItemsInCheckout { get; set; }
+        Dictionary<char, int> checkoutContents = new Dictionary<char, int>();
 
         public void AddItemToCheckout(Item itemToAdd)
         {
-            PriceForNumberOfItems p = new PriceForNumberOfItems(itemToAdd.SpecialPrice.NoOfItems, itemToAdd.SpecialPrice.GroupPrice);
-            ItemsInCheckout.Add(new Item(itemToAdd.Name, itemToAdd.Price, p));
+            if (itemToAdd != null)
+            {
+                if (checkoutContents.ContainsKey(itemToAdd.Name))
+                {
+                    checkoutContents[itemToAdd.Name] += 1;
+                }
+                else
+                {
+                    checkoutContents.Add(itemToAdd.Name, 1);
+                }
+            }
+
+        }
+        public double GetPrice(string name, int noOfItems)
+        {
+            double price = 0;
+            Item anItem = Stock.AvailableItems.Find(item => item.Name.ToString() == name);
+            if (anItem.SpecialPrice != null)
+            {
+                if (noOfItems >= anItem.SpecialPrice.NoOfItems)
+                {
+                    price = noOfItems / anItem.SpecialPrice.NoOfItems * anItem.SpecialPrice.GroupPrice;
+                    noOfItems = noOfItems - noOfItems / anItem.SpecialPrice.NoOfItems;
+                }
+            }
+
+            price += (noOfItems * anItem.Price);
+            return price;
         }
 
         public double GetTotal()
         {
             double total = 0;
-            //int noOfA = ItemsInCheckout.Where(item => item.Name == 'A').Count();
-            //total += GetPrice(stock.AvailableItems.Find(item => item.Name.ToString() == 'A', noOfA);
-            //int noOfB = ItemsInCheckout.Where(item => item.Name == 'B').Count();
-            //total += GetPrice('B', noOfB);
-            //int noOfC = ItemsInCheckout.Where(item => item.Name == 'C').Count();
-            //total += GetPrice('C', noOfC);
-            //int noOfD = ItemsInCheckout.Where(item => item.Name == 'D').Count();
-            //total += GetPrice('D', noOfD);
+            checkoutContents.TryGetValue('A', out int noOfA);
+            total += GetPrice("A", noOfA);
+            checkoutContents.TryGetValue('B', out int noOfB);
+            total += GetPrice("B", noOfB);
+            checkoutContents.TryGetValue('C', out int noOfC);
+            total += GetPrice("C", noOfC);
+            checkoutContents.TryGetValue('D', out int noOfD);
+            total += GetPrice("D", noOfD);
             return total;
         }
     }

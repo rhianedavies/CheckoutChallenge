@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CheckoutChallenge
 {
-    class Stock
+    public static class Stock
     {
-        public List<Item> AvailableItems { get; set; }
+        public static List<Item> AvailableItems { get; set; }
     }
 }
