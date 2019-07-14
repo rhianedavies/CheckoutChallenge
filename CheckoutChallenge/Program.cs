@@ -26,7 +26,7 @@ namespace CheckoutChallenge
 
             ConsoleKeyInfo cki;
             Console.WriteLine("Please enter A, B, C or D to add an item to your basket.");
-            Console.WriteLine("Press Enter to finish and receive the sum: \n");
+            Console.WriteLine("Press Enter to finish and receive the total: \n");
             do
             {
                 cki = Console.ReadKey();
