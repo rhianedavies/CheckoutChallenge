@@ -1,0 +1,17 @@
+﻿Checkout challenge:  Calculate the total price of a number of items  
+
+
+In a normal supermarket, things are identified using Stock Keeping Units, or SKU's.  In our store, we'll use individual letters of the alphabet (A, B, C and so on).  Our goods are priced individually. 
+In addition some items are multi priced:  buy n of then, and they'll cost you y.  For example item 'A' might cost 50 pence individually, but this week we'll have a special offer: Buy three 'A's' and 
+they'll cost you £1.30.  In fact this weeks prices are.
+
+Item Name		Price		Special Price
+A				50p			3 for £1.30
+B				30p			2 for £0.45
+C 				70p			
+D				20p
+
+Our checkout accepts items in any order, so that if we scan a B, an A and another B we'll recognise the two B's and price them at £0.45 (for a total price of £0.95).  
+
+Your challenge is to produce a piece of code that you would be happy and confident to put into a live environment, with appropriate unit tests (or a description of the test cases that you would 
+consider).  A console app is fine - there is no need to produce the UI.
